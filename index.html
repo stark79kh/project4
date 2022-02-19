@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Order Pizza List</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Home</a>
+                </li>
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Navbar Search -->
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <div class="navbar-search-block">
+                        <form class="form-inline">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-navbar" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+    
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge">15</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 15 Order
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                    style="opacity: .8">
+                <span class="brand-text font-weight-light">Pizza365</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Admin Pizza365</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                        <li class="nav-item">
+                            <a href="./index.html" class="nav-link active">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Order management</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                              <i class="nav-icon fas fa-paper-plane"></i>
+                              <p>Messages to customer</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="mb-3">QUẢN TRỊ ORDER PIZZA</h1>
+                            <button id="btn-new-order" class="btn btn-primary" data-toggle="modal" data-target="#modal-user">
+                                <i class="fas fa-plus-circle"></i>
+                                &nbsp;Thêm Order
+                            </button>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Order list</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row form-group">
+                        <label for="input-firstname" class="col-sm-2 col-form-label">Trạng thái Order</label>
+                        <div class="col-sm-3">
+                          <select class="form-control" name="trang-thai" id="select-trang-thai"></select>
+                        </div>
+                        <label for="input-lastname" class="col-sm-2 col-form-label">Loại Pizza</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" name="type-pizza" id="select-type-pizza"></select>
+                        </div>
+                        <div class="col-sm-2 text-right">
+                          <button class="btn btn-success" style="width: 60%;" id="btn-filter-order">Lọc</button>
+                        </div>
+                    </div>
+                    <!--Table Order-->
+                    <table class="table table-bordered table-striped table-hover" style="table-layout:fixed;" id="order-table">
+                        <thead>
+                          <tr>
+                            <th>Order ID</th>
+                            <th>Combo</th>
+                            <th>Loại pizza</th>
+                            <th>Nước uống</th>
+                            <th>Thành tiền</th>
+                            <th>Họ và tên</th>
+                            <th>Số ĐT</th>
+                            <th>Trạng thái</th>
+                            <th>Chi tiết</th>
+                          </tr>
+                      </table>
+
+                    <!-- Modal user detail chỗ này làm modal thêm + sửa oder-->
+                    <!--Modal Order edit-->
+                    <div id="order-modal" class="modal fade" tabindex="-1">
+                        <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="h5-modal-title"><strong>THÔNG TIN ĐƠN HÀNG</strong></h5>
+                            <button class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="row mt-2">
+                                                    <div class="col-sm-4 mt-2">
+                                                        <label for="hoTen">Họ và Tên</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="fullname-modal" readonly>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                    <div class="col-sm-4 mt-2">
+                                                        <label for="std">Số điện thoại</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="phonenumber-modal" readonly>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                    <div class="col-sm-4 mt-2">
+                                                        <label for="email">Email</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="email-modal" readonly>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                    <div class="col-sm-4 mt-2">
+                                                        <label for="address">Địa chỉ</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="address-modal" readonly>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                    <div class="col-sm-4 mt-2">
+                                                        <label for="voucher">Mã giảm giá</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="voucher-modal" readonly>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                    <div class="col-sm-4 mt-2">
+                                                        <label for="msg">Lời nhắn</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="msg-modal" readonly>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                    <div class="col-sm-4">
+                                                        <label for="info-order">Thông tin Order</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control" name="info-order" id="info-order" cols="1" rows="4" readonly></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="row mt-2">
+                                                    <div class="col-sm-4 mt-2">
+                                                        <label for="price">Giá thành</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" type="text" id="price-modal" readonly>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                    <div class="col-sm-4 mt-2">
+                                                        <label for="discount">Giảm giá</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" type="text" id="discount-modal" readonly>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                    <div class="col-sm-4 mt-2">
+                                                        <label for="payment">Thanh toán</label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" type="text" id="payment-modal" readonly>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col-sm-4 mt-2">
+                                                            <label for="day-1">Ngày tạo</label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <input class="form-control" type="text" id="date1-modal" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col-sm-4 mt-2">
+                                                            <label for="day-2">Ngày cập nhật</label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <input class="form-control" type="text" id="date2-modal" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col-sm-4 mt-2">
+                                                            <label for="payment">Trạng thái</label>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <select class="form-control" name="status" id="status-modal">
+                                                                <option value="open">Open</option>
+                                                                <option value="confirmed">Confirm</option>
+                                                                <option value="cancel">Cancel</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col-sm-4">
+                                                            <label for="not" class="text-danger">Ghi chú:</label>
+                                                        </div>
+                                                        <div class="col-sm-8"><strong>Chọn trạng thái để Update</strong>
+                                                            <p class="small"><strong>
+                                                                Có 3 trạng thái chuyển đổi:<br>open, confirm, cancel</br></strong>
+                                                            </p>
+                                                        </div>    
+                                                    </div>
+                                                </div>   
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="modal-footer">
+                                <div class="col-sm-12 text-right">
+                                    <button class="btn btn-warning" id="btn-update-modal">Update</button>
+                                    <button class="btn btn-secondary" id="btn-goback">Quay lại</button>   
+                                </div>
+                            </div>
+                        </div>        
+                    </div>
+                    </div>
+                    <!--Modal Order Delete-->
+                    <div div class="modal fade" tabindex="-1" id="delete-modal">
+                        <div class="modal-dialog">
+                          <div class="modal-content bg-danger">
+                            <div class="modal-header">
+                                <h5 class="modal-title fa fa-exclamation-triangle" id="h5-modal-title"><strong> XÓA ĐƠN HÀNG</strong></h5>
+                              <button class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                              <form>
+                                <div class="row form-group">
+                                  <div class="col-sm-12">
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <p><strong>Bạn có chắc muốn xóa đơn hàng?</strong></p>
+                                      </div>
+                                    </div>
+                                    <div class="row mt-1">
+                                      <div class="col-sm-6 mt-2">
+                                        <label for="orderid"><strong>Mã đơn hàng muốn xóa:</strong></label>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <input class="form-control" type="text" id="order-id">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <div class="col-sm-12 text-right">
+                                <button class="btn btn-secondary" id="btn-no-delete">Không Xóa</button>
+                                <button class="btn btn-warning" id="btn-agree-delete">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    <strong>Xóa</strong></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <!--Modal thông báo xóa thành công-->
+                    <div div class="modal fade" tabindex="-1" id="delete-ok-modal">
+                        <div class="modal-dialog">
+                          <div class="modal-content bg-success">
+                            <div class="modal-header">
+                                <div class="col-sm-12 text-center">
+                                    <h5 class="modal-title fa fa-check-circle" id="h5-modal-title"> ĐÃ XÓA ĐƠN HÀNG THÀNH CÔNG</h5>
+                                </div>  
+                            </div>
+                            <div class="modal-footer">
+                              <div class="col-sm-12 text-center">
+                                <button class="btn btn-secondary" id="reload">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <!--Modal thêm Order-->
+                    <div div class="modal fade" tabindex="-1" id="new-order-modal">
+                        <div class="modal-dialog modal-xl">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title"><strong>ĐƠN HÀNG MỚI</strong></h5>
+                              <button class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <!--chọn menu + loại pizza + loại nước-->
+                                    <div id="menu-type-drink" class="row">
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <div class="col-sm-12 text-center">
+                                                    <h5><b class="p-1 border-bottom border-warning">Chọn Combo</b></h5>
+                                                </div>
+                                                <div class="col-sm-12 mt-3 text-center">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <div class="card">
+                                                              <div class="card-header bg-warning text-center">
+                                                                <h5>S (small)</h5>
+                                                              </div>
+                                                              <div class="card-body text-center">
+                                                                <ul class="list-group">
+                                                                  <li> Đường kính:<b> 20cm</b></li>
+                                                                  <li> Sườn nướng:<b> 2</b></li>
+                                                                  <li> Salat:<b> 200g</b></li>
+                                                                  <li> Nước ngọt:<b> 2</b></li>
+                                                                  <li><h5><b>150000</b> VND</h5> </li>
+                                                                </ul>
+                                                              </div>
+                                                              <div class="card-footer text-center">
+                                                                <button id="btn-size-s" class="btn btn-warning w-100" type="button"><strong>Chọn</strong></button>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="card">
+                                                              <div class="card-header bg-warning text-center">
+                                                                <h5>M (medium)</h5>
+                                                              </div>
+                                                              <div class="card-body text-center">
+                                                                <ul class="list-group">
+                                                                  <li> Đường kính:<b> 25cm</b></li>
+                                                                  <li> Sườn nướng:<b> 4</b></li>
+                                                                  <li> Salat:<b> 300g</b></li>
+                                                                  <li> Nước ngọt:<b> 3</b></li>
+                                                                  <li><h5><b>200.000 VND</b></h5></li>
+                                                                </ul>
+                                                              </div>
+                                                              <div class="card-footer text-center">
+                                                                <button id="btn-size-m" class="btn btn-warning w-100" type="button"><strong>Chọn</strong></button> 
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="card">
+                                                              <div class="card-header bg-warning text-center">
+                                                                <h5>L (large)</h5>
+                                                              </div>
+                                                              <div class="card-body text-center">
+                                                                <ul class="list-group">
+                                                                  <li> Đường kính:<b> 30cm</b></li>
+                                                                  <li> Sườn nướng:<b> 8</b></li>
+                                                                  <li> Salat:<b> 500g</b></li>
+                                                                  <li> Nước ngọt:<b> 4</b></li>
+                                                                  <li><h5><b>250.000 VND</b></h5></li>
+                                                                </ul>
+                                                              </div>
+                                                              <div class="card-footer text-center">
+                                                                <button id="btn-size-l" class="btn btn-warning w-100" type="button"><strong>Chọn</strong></button>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <div class="col-sm-12 text-center">
+                                                    <h5><b class="p-1 border-bottom border-warning">Chọn Loại Pizza</b></h5>
+                                                </div>
+                                                <div class="col-sm-12 mt-3 text-center">
+                                                    <input id="bnt-pizza-type-1" type="button" class="btn btn-warning" value="Seafood">
+                                                    <input id="bnt-pizza-type-2" type="button" class="btn btn-warning" value="Hawaii">
+                                                    <input id="bnt-pizza-type-3" type="button" class="btn btn-warning" value="Bacon">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <div class="col-sm-12 text-center">
+                                                    <h5><b class="p-1 border-bottom border-warning">Chọn nước uống</b></h5>
+                                                </div>
+                                                <div class="col-sm-12 mt-3 text-center">
+                                                    <select id="select-drink" class="form-control">
+                                                        <option id ="id-option" class="form-control" value="none">Tất cả loại nước uống</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="order" class="row">
+                                        <!-- Title thông tin đơn hàng -->
+                                        <div class="col-sm-12 text-center title-content-text mb-2 mt-4">
+                                            <h5><b class="p-1 border-bottom border-warning">Thông tin người mua</b></h5>
+                                        </div>
+                            
+                                        <!-- Content đặt hàng -->
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <div class="col-sm-2 mt-2">
+                                                    <label>Họ và Tên:<span class="text-danger"> (*)</span></label>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inp-fullname" placeholder="Nhập tên">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-sm-2 mt-2">
+                                                    <label>Email:</label>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inp-email" placeholder="Nhập Email">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-sm-2 mt-2">
+                                                    <label>Điện thoại:<span class="text-danger"> (*)</span></label>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inp-dien-thoai" placeholder="Nhập số điện thoại">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-sm-2 mt-2">
+                                                    <label>Địa chỉ:<span class="text-danger"> (*)</span></label>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inp-dia-chi" placeholder="Địa chỉ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-sm-2 mt-2">
+                                                    <label>Lời nhắn:</label>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inp-message" placeholder="Nhập lời nhắn">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-sm-2 mt-2">
+                                                    <label>Mã giảm giá:</label>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="voucher-ID" placeholder="Nhập mã giảm giá">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                              <div class="col-sm-12 text-right">
+                                <button class="btn btn-success" id="btn-create-order">Tạo Đơn Hàng</button>
+                                <button class="btn btn-secondary" id="btn-clean-order">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <!--Modal xác nhận đơn tạo mới-->
+                    <div id="info-order-modal" class="modal fade" tabindex="-1">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="h5-modal-title"><strong>THÔNG TIN ĐƠN HÀNG MUỐN TẠO</strong></h5>
+                            <button class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="hoTen">Họ và Tên</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="fullname-new-order-modal" readonly>
+                                        </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                        <div class="col-sm-4 mt-2">
+                                            <label for="std">Số điện thoại</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="phonenumber-new-order-modal" readonly>
+                                        </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                        <div class="col-sm-4 mt-2">
+                                            <label for="email">Email</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="email-new-order-modal" readonly>
+                                        </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                        <div class="col-sm-4 mt-2">
+                                            <label for="address">Địa chỉ</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="address-new-order-modal" readonly>
+                                        </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                        <div class="col-sm-4 mt-2">
+                                            <label for="voucher">Mã giảm giá</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="voucher-new-order-modal" readonly>
+                                        </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                        <div class="col-sm-4 mt-2">
+                                            <label for="msg">Lời nhắn</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="msg-new-order-modal" readonly>
+                                        </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                        <div class="col-sm-4">
+                                            <label for="info-order">Thông tin Order</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" name="info-order" id="info-new-order" cols="1" rows="3" readonly></textarea>
+                                        </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                        <div class="col-sm-4 mt-2">
+                                            <label for="price">Giá thành</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" type="text" id="price-new-order-modal" readonly>
+                                        </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                        <div class="col-sm-4 mt-2">
+                                            <label for="discount">Giảm giá</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" type="text" id="discount-new-order-modal" readonly>
+                                        </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                        <div class="col-sm-4 mt-2">
+                                            <label for="payment">Thanh toán</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" type="text" id="payment-new-order-modal" readonly>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                            <div class="col-sm-12 text-right">
+                                <button class="btn btn-danger" id="btn-new-order-goback">Quay lại</button>
+                                <button class="btn btn-warning" id="btn-agree-new-order">Xác Nhận</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!--Modal verify-->
+                    <div div class="modal fade" tabindex="-1" id="verify-modal">
+                        <div class="modal-dialog">
+                        <div class="modal-content bg-warning">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="h5-modal-title">XÁC NHẬN ĐƠN HÀNG</h5>
+                            <button class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                            <form>
+                                <div class="row form-group">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                    <div class="col-sm-12">
+                                        <p><strong>Đặt hàng thành công!</strong></p>
+                                    </div>
+                                    </div>
+                                    <div class="row mt-1">
+                                    <div class="col-sm-6 mt-2">
+                                        <label for="orderid"><strong>Mã đơn hàng là:</strong></label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="text" id="new-order-id">
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </form>
+                            </div>
+                            <div class="modal-footer">
+                            <div class="col-sm-12 text-right">
+                                <button class="btn btn-secondary" id="btn-close-verify">Close</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2014-2021 Devcamp</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0.0
+            </div>
+        </footer>
+    </div>
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
+    <!-- datatable -->
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="dist/js/pages/Orderlist.js"></script>
+</body>
+</html>
